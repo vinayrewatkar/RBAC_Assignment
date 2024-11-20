@@ -1,52 +1,46 @@
-"use client";
-import { useEffect, useState } from "react";
-import { hasRole, hasPermission } from "../../../utils/rbacUtils";
-import { fetchData } from "../../../utils/apiUtils";
-import { ROLES, PERMISSIONS } from "../../../utils/constants";
-import Header from "../../components/headers";
-import Sidebar from "../../components/sideBar";
-import UserTable from "../../components/userTable"; // Import the UserTable component
+"use client"
+import React, { useState, useEffect } from 'react';
+import Header from '../../components/headers';
+import Sidebar from '../../components/sideBar';
+import UserTable from '../../components/userTable';
+import { UserProvider } from '../../../store/userContext';
 
-const Dashboard = () => {
-  const [user, setUser] = useState<any>(null);
-  const [roles, setRoles] = useState<string[]>([]);
-  const [permissions, setPermissions] = useState<string[]>([]);
+import { UserType } from '../../../types/type';
+
+const Dashboard: React.FC = () => {
+  const [user, setUser] = useState<UserType | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
-    // Fetch user data from an API or local storage
-    const currentUser = localStorage.getItem("currentUser");
+    const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       setUser(JSON.parse(currentUser));
-      // You would likely fetch roles/permissions via API
-      setRoles(["admin", "user"]); // example roles
-      setPermissions(["read", "write"]); // example permissions
     }
   }, []);
 
   return (
-    <div className="flex">
-      <Sidebar />
-      <div className="flex-1 bg-gray-100">
-        <Header />
-        <main className="p-4">
-          <h2 className="text-2xl font-semibold">Welcome to the Dashboard</h2>
-          <p className="mt-2">Manage users, roles, and permissions here.</p>
+    <UserProvider>
+      <div className="flex h-screen bg-black">
+      
+        <div className="flex-1 flex flex-col overflow-hidden">
+          
+          <main className="flex-1 overflow-auto p-4">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-8">
+                <h2 className="text-2xl font-semibold mb-2">
+                  Welcome back, {user?.name || 'Guest'}!
+                </h2>
+                <p className="text-gray-600">
+                  Here's what's happening with your users today.
+                </p>
+              </div>
 
-          {/* Example of using role and permission checks */}
-          {hasRole(roles, ROLES.ADMIN) && hasPermission(permissions, PERMISSIONS.READ) ? (
-            <div className="mt-6">
-              <h3 className="text-xl font-bold mb-4">User Management</h3>
-              {/* Add the UserTable here */}
-              <UserTable/>
+              <UserTable />
             </div>
-          ) : (
-            <p className="text-red-500 mt-4">
-              You do not have access to this content.
-            </p>
-          )}
-        </main>
+          </main>
+        </div>
       </div>
-    </div>
+    </UserProvider>
   );
 };
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import { UserProvider } from "../store/userContext"; // Corrected the path
-import { RoleProvider } from "../store/roleContext"; // Corrected the path
+ // Corrected the path
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,9 +32,7 @@ export default function RootLayout({
       >
         {/* Wrapping the children with the context providers */}
         <UserProvider>
-          <RoleProvider>
             {children}
-          </RoleProvider>
         </UserProvider>
       </body>
     </html>
