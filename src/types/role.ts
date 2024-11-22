@@ -1,6 +1,16 @@
+import { PermissionType } from "./type";
+
+export interface Permission {
+  id: string;
+  name: PermissionType;
+  description: string;
+}
+
 export interface Role {
-    id: number;
-    name: string;
-    permissions: string[]; // You can expand this to more complex permission structures if needed
-  }
-  
+  id: string;
+  name: string;
+  description: string;
+  permissions: Permission[];
+  createdAt: string;
+  updatedAt: string;
+}

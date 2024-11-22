@@ -1,7 +1,46 @@
-// app/page.tsx
-import { redirect } from 'next/navigation';
+"use client"
+import React from 'react';
+import Link from 'next/link';
+import { Users, Shield } from 'lucide-react';
 
-export default function Home() {
-  // Redirect to /dashboard
-  redirect('./pages/dashboard');
-}
+const HomePage = () => {
+  return (
+    <div className="p-4">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-3xl font-bold mb-8">Welcome to Admin Dashboard</h1>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Users Card */}
+          <Link 
+            href="/users"
+            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center">
+              <Users className="w-8 h-8 text-blue-500" />
+              <div className="ml-4">
+                <h2 className="text-xl font-semibold">User Management</h2>
+                <p className="text-gray-600">Manage system users and their access</p>
+              </div>
+            </div>
+          </Link>
+
+          {/* Roles Card */}
+          <Link 
+            href="/roles"
+            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+          >
+            <div className="flex items-center">
+              <Shield className="w-8 h-8 text-green-500" />
+              <div className="ml-4">
+                <h2 className="text-xl font-semibold">Role Management</h2>
+                <p className="text-gray-600">Configure roles and permissions</p>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;

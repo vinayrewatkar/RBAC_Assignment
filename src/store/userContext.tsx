@@ -1,8 +1,10 @@
+// store/userContext.tsx
 "use client"
 import React, { createContext, useState, useContext, ReactNode, useEffect } from 'react';
 import { UserType } from '../types/type';
+import { Role } from '../types/role';
 
-// Default initial users
+// Enhanced default users with roleId
 const defaultUsers: UserType[] = [
   {
     name: "John Doe",
@@ -10,6 +12,7 @@ const defaultUsers: UserType[] = [
     email: "johndoe@example.com",
     joinedDate: "Jan 12, 2023",
     isActive: true,
+    roleId: "1" // Admin role
   },
   {
     name: "Jane Smith",
@@ -17,6 +20,7 @@ const defaultUsers: UserType[] = [
     email: "janesmith@example.com",
     joinedDate: "Feb 8, 2022",
     isActive: false,
+    roleId: "2" // User role
   },
   {
     name: "Alice Johnson",
@@ -24,31 +28,38 @@ const defaultUsers: UserType[] = [
     email: "alicej@example.com",
     joinedDate: "Mar 15, 2023",
     isActive: true,
+    roleId: "2" // User role
   }
 ];
 
-// Define the shape of the context
+// Enhanced context type with role-related functions
 interface UserContextType {
   users: UserType[];
   addUser: (user: UserType) => void;
   updateUser: (updatedUser: UserType) => void;
   deleteUser: (email: string) => void;
+  getUsersByRole: (roleId: string) => UserType[];
+  updateUserRole: (email: string, roleId: string) => void;
+  getUserPermissions: (email: string, roles: Role[]) => string[];
 }
 
-// Create the context with a default value
+// Create context with default value
 const UserContext = createContext<UserContextType>({
   users: defaultUsers,
   addUser: () => {},
   updateUser: () => {},
   deleteUser: () => {},
+  getUsersByRole: () => [],
+  updateUserRole: () => {},
+  getUserPermissions: () => [],
 });
 
-// Provider component
+// Enhanced Provider component
 export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [users, setUsers] = useState<UserType[]>(defaultUsers);
   const [isClient, setIsClient] = useState(false);
 
-  // Helper function to validate user
+  // Enhanced user validation
   const isValidUser = (user: any): user is UserType => {
     return (
       typeof user === 'object' && 
@@ -57,11 +68,12 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       typeof user.role === 'string' &&
       typeof user.email === 'string' &&
       typeof user.joinedDate === 'string' &&
-      typeof user.isActive === 'boolean'
+      typeof user.isActive === 'boolean' &&
+      (user.roleId === undefined || typeof user.roleId === 'string')
     );
   };
 
-  // Effect to handle localStorage after client-side mount
+  // Effect to handle localStorage
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const storedUsers = localStorage.getItem('users');
@@ -69,7 +81,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       if (storedUsers) {
         try {
           const parsedUsers = JSON.parse(storedUsers);
-          
           const validUsers = Array.isArray(parsedUsers) 
             ? parsedUsers.filter(isValidUser)
             : [];
@@ -85,7 +96,7 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, []);
 
-  // Effect to update localStorage when users change
+  // Effect to update localStorage
   useEffect(() => {
     if (isClient) {
       try {
@@ -96,32 +107,27 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     }
   }, [users, isClient]);
 
-  // Add new user
+  // Add new user with role
   const addUser = (newUser: UserType) => {
-    // Validate the new user
     if (!isValidUser(newUser)) {
       console.error('Invalid user data:', newUser);
       return;
     }
 
-    // Normalize email
     const normalizedEmail = newUser.email.trim().toLowerCase();
     
-    // Check if user with same email already exists
     const existingUserIndex = users.findIndex(u => 
       u.email.trim().toLowerCase() === normalizedEmail
     );
 
     let updatedUsers;
     if (existingUserIndex !== -1) {
-      // If user exists, update the existing user
       updatedUsers = users.map((u, index) => 
         index === existingUserIndex 
           ? { ...u, ...newUser, email: normalizedEmail } 
           : u
       );
     } else {
-      // Add new user only if email is unique
       updatedUsers = [...users, {
         ...newUser,
         email: normalizedEmail,
@@ -129,7 +135,8 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
           month: 'short', 
           day: 'numeric', 
           year: 'numeric' 
-        })
+        }),
+        roleId: newUser.roleId || "2" // Default to basic user role if not specified
       }];
     }
 
@@ -138,13 +145,11 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Update existing user
   const updateUser = (updatedUser: UserType) => {
-    // Validate the updated user
     if (!isValidUser(updatedUser)) {
       console.error('Invalid user data:', updatedUser);
       return;
     }
 
-    // Normalize email
     const normalizedEmail = updatedUser.email.trim().toLowerCase();
 
     const updatedUsers = users.map(user => 
@@ -157,7 +162,6 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Delete user
   const deleteUser = (email: string) => {
-    // Normalize email for comparison
     const normalizedEmail = email.trim().toLowerCase();
     const updatedUsers = users.filter(user => 
       user.email.trim().toLowerCase() !== normalizedEmail
@@ -165,8 +169,43 @@ export const UserProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
     setUsers(updatedUsers);
   };
 
+  // Get users by role
+  const getUsersByRole = (roleId: string): UserType[] => {
+    return users.filter(user => user.roleId === roleId);
+  };
+
+  // Update user role
+  const updateUserRole = (email: string, roleId: string) => {
+    const normalizedEmail = email.trim().toLowerCase();
+    const updatedUsers = users.map(user => 
+      user.email.trim().toLowerCase() === normalizedEmail 
+        ? { ...user, roleId } 
+        : user
+    );
+    setUsers(updatedUsers);
+  };
+
+  // Get user permissions based on their role
+  const getUserPermissions = (email: string, roles: Role[]): string[] => {
+    const user = users.find(u => u.email.trim().toLowerCase() === email.trim().toLowerCase());
+    if (!user || !user.roleId) return [];
+
+    const userRole = roles.find(role => role.id === user.roleId);
+    if (!userRole) return [];
+
+    return userRole.permissions.map(permission => permission.name);
+  };
+
   return (
-    <UserContext.Provider value={{ users, addUser, updateUser, deleteUser }}>
+    <UserContext.Provider value={{ 
+      users, 
+      addUser, 
+      updateUser, 
+      deleteUser,
+      getUsersByRole,
+      updateUserRole,
+      getUserPermissions
+    }}>
       {children}
     </UserContext.Provider>
   );

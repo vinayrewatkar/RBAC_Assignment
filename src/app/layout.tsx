@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { UserProvider } from "../store/userContext"; // Corrected the path
- // Corrected the path
+import { UserProvider } from "../store/userContext";
+import RootLayoutClient from "./layout-client";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
   weight: "100 900",
 });
+
 const geistMono = localFont({
   src: "./fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
@@ -30,10 +31,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Wrapping the children with the context providers */}
-        <UserProvider>
-            {children}
-        </UserProvider>
+        <RootLayoutClient>
+          {children}
+        </RootLayoutClient>
       </body>
     </html>
   );
