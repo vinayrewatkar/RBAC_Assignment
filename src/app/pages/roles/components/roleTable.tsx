@@ -31,10 +31,10 @@ export const RoleTable: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-black rounded-lg shadow">
       {/* Header */}
       <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-800">Roles</h2>
+        <h2 className="text-xl font-semibold text-white">Roles</h2>
         <button
           onClick={() => openModal()}
           className="flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
@@ -47,7 +47,7 @@ export const RoleTable: React.FC = () => {
       {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-900">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Role Name
@@ -66,7 +66,7 @@ export const RoleTable: React.FC = () => {
               </th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-gray-900 divide-y divide-gray-200">
             {roles.map((role) => (
               <tr key={role.id}>
                 <td className="px-6 py-4 whitespace-nowrap">

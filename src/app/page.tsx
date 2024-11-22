@@ -13,7 +13,7 @@ const HomePage = () => {
           {/* Users Card */}
           <Link 
             href="/users"
-            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+            className="bg-gray-900 p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
             <div className="flex items-center">
               <Users className="w-8 h-8 text-blue-500" />
@@ -27,7 +27,7 @@ const HomePage = () => {
           {/* Roles Card */}
           <Link 
             href="/roles"
-            className="bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow"
+            className="bg-gray-900 p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
             <div className="flex items-center">
               <Shield className="w-8 h-8 text-green-500" />

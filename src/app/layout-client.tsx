@@ -26,7 +26,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
   const isActive = (path: string) => pathname === path;
 
   return (
-    <div className="h-screen flex bg-gray-100">
+    <div className="h-screen flex bg-black">
       {/* Sidebar */}
       <div
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-gray-900 transform ${
@@ -73,7 +73,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-h-screen">
-        <header className="bg-white shadow-sm lg:static lg:overflow-y-visible">
+        <header className="bg-black shadow-sm lg:static lg:overflow-y-visible">
           <div className="max-w-7xl mx-auto px-4">
             <div className="relative flex justify-between h-16">
               <div className="flex items-center">
@@ -86,10 +86,10 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
                 <div className="relative">
                   <button
                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                    className="flex items-center space-x-2 text-sm text-gray-700 hover:text-gray-900 focus:outline-none"
+                    className="flex items-center space-x-2 text-sm text-white hover:text-gray-900 focus:outline-none"
                   >
-                    <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center">
-                      <Users className="h-5 w-5 text-gray-500" />
+                    <div className="h-8 w-8 rounded-full bg-black flex items-center justify-center">
+                      <Users className="h-5 w-5 text-white" />
                     </div>
                     <span className="hidden md:block">Admin User</span>
                     <ChevronDown className="h-4 w-4" />

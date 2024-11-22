@@ -51,27 +51,27 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+      <div className="bg-gray-900 rounded-lg p-6 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">
           {initialUser ? 'Edit User' : 'Add New User'}
         </h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-100">
               Name
             </label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md border-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-100">
               Email
             </label>
             <input
@@ -84,7 +84,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-100">
               Role
             </label>
             <select
@@ -109,7 +109,7 @@ const UserFormModal: React.FC<UserFormModalProps> = ({
                 onChange={(e) => setFormData({ ...formData, isActive: e.target.checked })}
                 className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               />
-              <span className="ml-2 text-sm text-gray-600">Active User</span>
+              <span className="ml-2 text-sm text-gray-100">Active User</span>
             </label>
           </div>
 
