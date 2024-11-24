@@ -112,19 +112,3 @@ The permission system includes:
   - Custom: Define specialized permissions
 - **Access Control**: Fine-grained control over feature access
 
-## Development Guidelines
-
-1. **Code Style**
-   - Follow provided ESLint configuration
-   - Use TypeScript for type safety
-   - Implement proper error handling
-
-2. **Component Structure**
-   - Use atomic design principles
-   - Implement proper prop validation
-   - Follow React best practices
-
-3. **State Management**
-   - Utilize React Context for global state
-   - Implement proper loading states
-   - Handle errors gracefully
