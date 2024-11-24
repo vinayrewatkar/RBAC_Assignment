@@ -1,6 +1,6 @@
 # Admin Dashboard
 
-![Dashboard](https://github.com/vinayrewatkar/RBAC_Assignment/tree/main/public/dashboard.png)
+[dashboard](https://github.com/vinayrewatkar/RBAC_Assignment/blob/main/public/dashboard.png)
 
 ## Overview
 
