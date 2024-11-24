@@ -1,9 +1,9 @@
 // components/UserCard.tsx
 import React, { useState } from 'react';
 import { User, Edit, Trash2 } from 'lucide-react';
-import { UserCardProps } from '../../types/type';
+import { UserCardProps } from '../../../../types/type';
 import UserForm from './AddUserForm';
-import { useUsers } from '../../store/userContext';
+import { useUsers } from '../../../../store/userContext';
 
 const UserCard: React.FC<UserCardProps> = ({ user }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);

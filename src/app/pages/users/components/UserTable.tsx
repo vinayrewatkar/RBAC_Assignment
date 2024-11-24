@@ -1,16 +1,27 @@
-"use client"
-import React, { useState } from 'react';
+"use client";
+import React, { useState, useEffect } from 'react';
 import { useUsers } from '../../../../store/userContext';
 import { useRoles } from '../../../../store/rolesContext';
 import UserFormModal from './userFormModels';
 import { UserType } from '../../../../types/type';
-import { Edit, Trash2, Plus, ToggleLeft, ToggleRight } from 'lucide-react';
+import { Edit, Trash2, Plus, ToggleLeft, ToggleRight, Search } from 'lucide-react';
 
 const UserTable: React.FC = () => {
   const { users, updateUser, deleteUser } = useUsers();
   const { roles } = useRoles();
   const [selectedUser, setSelectedUser] = useState<UserType | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(''); // State for search input
+  const [filteredUsers, setFilteredUsers] = useState(users); // State for filtered users
+
+  useEffect(() => {
+    // Filter users based on the search query
+    setFilteredUsers(
+      users.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    );
+  }, [users, searchQuery]);
 
   const handleDelete = (user: UserType) => {
     if (window.confirm(`Are you sure you want to delete user "${user.name}"?`)) {
@@ -21,14 +32,29 @@ const UserTable: React.FC = () => {
   const toggleUserStatus = (user: UserType) => {
     updateUser({
       ...user,
-      isActive: !user.isActive
+      isActive: !user.isActive,
     });
   };
 
   return (
     <div className="bg-black rounded-lg shadow">
-      <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-white">Users</h2>
+      {/* Header */}
+      <div className="p-4 border-b border-gray-200 flex flex-col md:flex-row md:justify-between md:items-center">
+        <h2 className="text-xl font-semibold text-white mb-4 md:mb-0">Users</h2>
+
+        {/* Search Bar */}
+        <div className="relative w-full md:w-1/3 mb-4 md:mb-0">
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by name..."
+            className="w-full p-2 pl-10 rounded-lg bg-black text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <Search className="absolute left-3 top-2.5 text-gray-500 w-5 h-5" />
+        </div>
+
+        {/* Add User Button */}
         <button
           onClick={() => {
             setSelectedUser(null);
@@ -41,6 +67,7 @@ const UserTable: React.FC = () => {
         </button>
       </div>
 
+      {/* Table */}
       <div className="overflow-x-auto">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-900">
@@ -63,7 +90,7 @@ const UserTable: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-gray-950 divide-y divide-gray-200">
-            {users.map((user) => (
+            {filteredUsers.map((user) => (
               <tr key={user.email}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="flex items-center">
@@ -125,6 +152,7 @@ const UserTable: React.FC = () => {
         </table>
       </div>
 
+      {/* User Modal */}
       {showModal && (
         <UserFormModal
           initialUser={selectedUser}

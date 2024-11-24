@@ -3,13 +3,14 @@ import React, { useState } from "react";
 import { useRoles } from "../../../../store/rolesContext";
 import { RoleFormModal } from "./roleModals";
 import { Role } from "../../../../types/role";
-import { Edit, Trash2, Plus } from "lucide-react";
+import { Edit, Trash2, Plus, Search } from "lucide-react";
 import { format } from "date-fns";
 
 export const RoleTable: React.FC = () => {
   const { roles, deleteRole } = useRoles();
   const [selectedRole, setSelectedRole] = useState<Role | null>(null);
   const [showModal, setShowModal] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   // Confirm before deleting a role
   const handleDelete = (role: Role) => {
@@ -30,11 +31,31 @@ export const RoleTable: React.FC = () => {
     setSelectedRole(null);
   };
 
+  // Filter roles based on search query
+  const filteredRoles = roles.filter((role) =>
+    role.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="bg-black rounded-lg shadow">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+      <div className="p-4 border-b border-gray-200 flex items-center justify-between gap-4">
+        {/* Roles Title */}
         <h2 className="text-xl font-semibold text-white">Roles</h2>
+
+        {/* Search Box */}
+        <div className="relative flex-1 max-w-md">
+          <Search className="absolute left-2 top-2 w-4 h-4 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search by role..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full pl-8 pr-4 py-2 rounded-md bg-black text-white focus:outline-none focus:ring focus:ring-blue-500"
+          />
+        </div>
+
+        {/* Add Role Button */}
         <button
           onClick={() => openModal()}
           className="flex items-center px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-500"
@@ -67,7 +88,7 @@ export const RoleTable: React.FC = () => {
             </tr>
           </thead>
           <tbody className="bg-gray-950 divide-y divide-gray-200">
-            {roles.map((role) => (
+            {filteredRoles.map((role) => (
               <tr key={role.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm font-medium text-gray-300">{role.name}</div>
@@ -89,7 +110,7 @@ export const RoleTable: React.FC = () => {
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
                   <div className="text-sm text-gray-300">
-                    {format(new Date(role.createdAt), "MM/dd/yyyy")} {/* Consistent date format */}
+                    {format(new Date(role.createdAt), "MM/dd/yyyy")}
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
