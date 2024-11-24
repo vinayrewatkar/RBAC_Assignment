@@ -28,7 +28,7 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
 
   return (
     <>
-      <div className="bg-gray-900 text-white p-4 rounded-lg w-full relative overflow-hidden flex flex-col items-center justify-center min-h-[200px] hover:shadow-lg transition-shadow duration-300">
+      <div className="bg-gray-900/50 text-white p-4 rounded-lg w-full relative overflow-hidden flex flex-col items-center justify-center min-h-[200px] hover:shadow-lg transition-shadow duration-300">
         {/* Icons Container */}
         <div className="absolute top-2 right-2 z-20 flex items-center space-x-2">
           {/* Edit Icon */}

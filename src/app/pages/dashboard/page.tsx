@@ -88,7 +88,7 @@ const DashboardContent: React.FC = () => {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-2">
               <Filter className="w-5 h-5 text-gray-500" />
-              <label className="text-gray-600 mr-2">Filter by Role:</label>
+              <label className="text-gray-400 mr-2">Filter by Role:</label>
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
@@ -106,7 +106,7 @@ const DashboardContent: React.FC = () => {
 
           <button
             onClick={handleExport}
-            className="flex items-center space-x-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+            className="flex items-center space-x-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-600 transition-colors"
           >
             <Download className="w-5 h-5" />
             <span>Export Users</span>
@@ -114,7 +114,7 @@ const DashboardContent: React.FC = () => {
         </div>
 
         {/* Users Table Section */}
-        <div className="bg-gray-900 rounded-lg shadow-xl">
+        <div className="bg-black rounded-lg shadow-xl">
           <UserTable users={filteredUsers} />
         </div>
       </div>

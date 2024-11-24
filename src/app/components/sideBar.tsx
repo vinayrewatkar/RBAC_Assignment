@@ -26,7 +26,7 @@ const Sidebar = ({ navigation, isSidebarOpen, setIsSidebarOpen }: SidebarProps) 
       >
         <div className="flex h-full flex-col">
           {/* Logo Section */}
-          <div className="h-16 flex items-center justify-between px-4 bg-gray-800/50 border-b border-gray-700">
+          <div className="h-16 flex items-center justify-between px-4 bg-gray-900/50 border-b border-gray-700">
             <div className="flex items-center">
               <Shield className="h-8 w-8 text-blue-500" />
               <span className="ml-2 text-xl font-bold text-white">Admin Panel</span>

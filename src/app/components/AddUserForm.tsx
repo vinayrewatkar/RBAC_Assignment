@@ -1,7 +1,8 @@
-"use client"
+"use client";
 import React, { useState } from 'react';
 import { UserType } from '../../types/type';
 import { useUsers } from '../../store/userContext';
+import { useRoles } from '../../store/rolesContext';
 
 interface UserFormProps {
   initialUser?: UserType;
@@ -10,32 +11,42 @@ interface UserFormProps {
 
 const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
   const { addUser, updateUser } = useUsers();
+  const { roles } = useRoles(); // Fetch available roles from context
   const [formData, setFormData] = useState<UserType>({
     name: initialUser?.name || '',
     role: initialUser?.role || '',
     email: initialUser?.email || '',
-    joinedDate: initialUser?.joinedDate || new Date().toLocaleDateString('en-US', { 
-      month: 'short', 
-      day: 'numeric', 
-      year: 'numeric' 
+    joinedDate: initialUser?.joinedDate || new Date().toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
     }),
-    isActive: initialUser?.isActive ?? true
+    isActive: initialUser?.isActive ?? true,
   });
+  const [error, setError] = useState<string | null>(null); // Error state
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    setError(null); // Clear any previous errors when user edits
     setFormData(prev => ({
       ...prev,
-      [name]: name === 'isActive' ? value === 'true' : value
+      [name]: name === 'isActive' ? value === 'true' : value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate form
     if (!formData.name || !formData.email || !formData.role) {
-      alert('Please fill in all required fields');
+      setError('Please fill in all required fields');
+      return;
+    }
+
+    // Check if the entered role is valid
+    const roleExists = roles.some(role => role.name === formData.role);
+    if (!roleExists) {
+      setError(`The role "${formData.role}" is not available. Please choose a valid role.`);
       return;
     }
 
@@ -43,11 +54,11 @@ const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
     const userWithEmail = {
       ...formData,
       email: formData.email.trim().toLowerCase(),
-      joinedDate: formData.joinedDate || new Date().toLocaleDateString('en-US', { 
-        month: 'short', 
-        day: 'numeric', 
-        year: 'numeric' 
-      })
+      joinedDate: formData.joinedDate || new Date().toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric',
+      }),
     };
 
     if (initialUser) {
@@ -68,6 +79,7 @@ const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
           {initialUser ? 'Edit User' : 'Add New User'}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
           <div>
             <label className="block text-gray-300 mb-2">Name</label>
             <input

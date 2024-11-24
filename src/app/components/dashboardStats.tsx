@@ -15,7 +15,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({
 }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-      <div className="bg-gray-900 p-6 rounded-lg shadow-xl">
+      <div className="bg-gray-900/50 p-6 rounded-lg shadow-xl">
         <div className="flex items-center space-x-3">
           <Users className="w-8 h-8 text-blue-500" />
           <div>
@@ -25,7 +25,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({
         </div>
       </div>
       
-      <div className="bg-gray-900 p-6 rounded-lg shadow-xl">
+      <div className="bg-gray-900/50 p-6 rounded-lg shadow-xl">
         <div className="flex items-center space-x-3">
           <UserCheck className="w-8 h-8 text-green-500" />
           <div>
@@ -35,7 +35,7 @@ const DashboardStats: React.FC<DashboardStatsProps> = ({
         </div>
       </div>
       
-      <div className="bg-gray-900 p-6 rounded-lg shadow-xl">
+      <div className="bg-gray-900/50 p-6 rounded-lg shadow-xl">
         <div className="flex items-center space-x-3">
           <UserX className="w-8 h-8 text-red-500" />
           <div>
