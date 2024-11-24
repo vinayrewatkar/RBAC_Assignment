@@ -32,7 +32,6 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
           setIsProfileMenuOpen={setIsProfileMenuOpen}
         />
 
-        {/* Main Content - More space for content */}
         <main className="flex-1 overflow-y-auto bg-gradient-to-b from-black to-black p-6">
           {children}
         </main>

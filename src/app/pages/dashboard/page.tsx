@@ -11,11 +11,10 @@ import { RolesProvider } from "../../../store/rolesContext";
 
 const DashboardContent: React.FC = () => {
   const [user, setUser] = useState<UserType | null>(null);
-  const { users } = useUsers(); // From User Context
-  const { roles } = useRoles(); // From Roles Context
+  const { users } = useUsers(); 
+  const { roles } = useRoles(); 
   const [filteredUsers, setFilteredUsers] = useState<UserType[]>([]);
 
-  // Get current user from localStorage
   useEffect(() => {
     const currentUser = localStorage.getItem("currentUser");
     if (currentUser) {
@@ -23,16 +22,13 @@ const DashboardContent: React.FC = () => {
     }
   }, []);
 
-  // Set all users to filteredUsers initially
   useEffect(() => {
     setFilteredUsers(users);
   }, [users]);
 
-  // Count active and inactive users
   const activeUsers = users.filter((user) => user.isActive).length;
   const inactiveUsers = users.length - activeUsers;
 
-  // Export user data as CSV
   const handleExport = () => {
     const exportData = filteredUsers.map((user) => ({
       name: user.name,
@@ -97,7 +93,6 @@ const DashboardContent: React.FC = () => {
   );
 };
 
-// Wrap the DashboardContent with Providers
 const Dashboard: React.FC = () => {
   return (
     <RolesProvider>
