@@ -10,20 +10,20 @@ const UserCard: React.FC<UserCardProps> = ({ user }) => {
   const { deleteUser } = useUsers();
 
   const handleDeleteUser = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent parent click events
+    e.stopPropagation(); 
 
     const confirmDelete = window.confirm(
       `Are you sure you want to delete user ${user.name}?`
     );
 
     if (confirmDelete) {
-      deleteUser(user.email); // Call deleteUser from context
+      deleteUser(user.email); 
     }
   };
 
   const handleEditClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Prevent parent click events
-    setIsEditModalOpen(true); // Open the edit modal
+    e.stopPropagation(); 
+    setIsEditModalOpen(true); 
   };
 
   return (

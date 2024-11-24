@@ -11,7 +11,7 @@ interface UserFormProps {
 
 const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
   const { addUser, updateUser } = useUsers();
-  const { roles } = useRoles(); // Fetch available roles from context
+  const { roles } = useRoles(); 
   const [formData, setFormData] = useState<UserType>({
     name: initialUser?.name || '',
     role: initialUser?.role || '',
@@ -23,11 +23,11 @@ const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
     }),
     isActive: initialUser?.isActive ?? true,
   });
-  const [error, setError] = useState<string | null>(null); // Error state
+  const [error, setError] = useState<string | null>(null); 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    setError(null); // Clear any previous errors when user edits
+    setError(null); 
     setFormData(prev => ({
       ...prev,
       [name]: name === 'isActive' ? value === 'true' : value,
@@ -43,14 +43,12 @@ const UserForm: React.FC<UserFormProps> = ({ initialUser, onClose }) => {
       return;
     }
 
-    // Check if the entered role is valid
     const roleExists = roles.some(role => role.name === formData.role);
     if (!roleExists) {
       setError(`The role "${formData.role}" is not available. Please choose a valid role.`);
       return;
     }
-
-    // Ensure unique email and consistent formatting
+    
     const userWithEmail = {
       ...formData,
       email: formData.email.trim().toLowerCase(),
