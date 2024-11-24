@@ -21,7 +21,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Users Card */}
           <Link 
-            href="/pages/users"
+            href="/users"
             className="bg-gray-900 p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
             <div className="flex items-center">
@@ -35,7 +35,7 @@ const HomePage = () => {
 
           {/* Roles Card */}
           <Link 
-            href="/pages/roles"
+            href="/roles"
             className="bg-gray-900 p-6 rounded-lg shadow hover:shadow-md transition-shadow"
           >
             <div className="flex items-center">

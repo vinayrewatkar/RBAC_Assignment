@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import Sidebar from "../app/components/sideBar";
 import Header from "../app/components/headers";
 import { Users, Shield, LayoutDashboard } from "lucide-react";
-import UserGuide from "./components/userGuide";
+
 
 const navigation = [
-  { name: "Dashboard", href: "/pages/dashboard", icon: LayoutDashboard },
-  { name: "Users", href: "/pages/users", icon: Users },
-  { name: "Roles", href: "/pages/roles", icon: Shield },
+  { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
+  { name: "Users", href: "/users", icon: Users },
+  { name: "Roles", href: "/roles", icon: Shield },
 ];
 
 export default function RootLayoutClient({ children }: { children: React.ReactNode }) {

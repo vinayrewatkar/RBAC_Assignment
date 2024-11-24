@@ -29,7 +29,10 @@ const Sidebar = ({ navigation, isSidebarOpen, setIsSidebarOpen }: SidebarProps) 
           <div className="h-16 flex items-center justify-between px-4 bg-gray-900/50 border-b border-gray-700">
             <div className="flex items-center">
               <Shield className="h-8 w-8 text-blue-500" />
-              <span className="ml-2 text-xl font-bold text-white">Admin Panel</span>
+              {/* Link around the "Admin Panel" text */}
+              <Link href="/" className="ml-2 text-xl font-bold text-white">
+                Admin Panel
+              </Link>
             </div>
             <button 
               onClick={() => setIsSidebarOpen(false)} 

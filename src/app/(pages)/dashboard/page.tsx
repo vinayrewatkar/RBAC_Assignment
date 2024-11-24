@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { Download } from "lucide-react";
-import UserTable from "./components/userTable";
-import DashboardStats from "./components/dashboardStats";
+import UserTable from "./_components/userTable";
+import DashboardStats from "./_components/dashboardStats";
 import { UserType } from "../../../types/type";
 import { useUsers } from "../../../store/userContext";
 import { useRoles } from "../../../store/rolesContext";

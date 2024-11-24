@@ -1,6 +1,6 @@
 "use client"
 import React from 'react';
-import { RoleTable } from './components/roleTable';
+import { RoleTable } from './_components/roleTable';
 import { RolesProvider } from '../../../store/rolesContext';
 
 const RolesPage: React.FC = () => {

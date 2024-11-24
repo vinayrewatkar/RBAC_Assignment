@@ -2,7 +2,7 @@
 import React from 'react';
 import { UserProvider } from '../../../store/userContext';
 import { RolesProvider } from '../../../store/rolesContext';
-import UserTable from './components/UserTable';
+import UserTable from './_components/UserTable';
 
 const UsersPage: React.FC = () => {
   return (
