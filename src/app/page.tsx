@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Users, Shield } from 'lucide-react';
-import UserGuide from './components/userGuide';
+import UserGuide from './_components/userGuide';
 
 const HomePage = () => {
   return (

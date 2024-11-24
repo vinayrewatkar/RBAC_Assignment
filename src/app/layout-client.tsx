@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import Sidebar from "../app/components/sideBar";
-import Header from "../app/components/headers";
+import Sidebar from "./_components/sideBar";
+import Header from "./_components/headers";
 import { Users, Shield, LayoutDashboard } from "lucide-react";
 
 

@@ -25,15 +25,12 @@ const Sidebar = ({ navigation, isSidebarOpen, setIsSidebarOpen }: SidebarProps) 
         } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
       >
         <div className="flex h-full flex-col">
-          {/* Logo Section */}
+          {/* Logo Section with Link around both the icon and text */}
           <div className="h-16 flex items-center justify-between px-4 bg-gray-900/50 border-b border-gray-700">
-            <div className="flex items-center">
+            <Link href="/" className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-blue-500" />
-              {/* Link around the "Admin Panel" text */}
-              <Link href="/" className="ml-2 text-xl font-bold text-white">
-                Admin Panel
-              </Link>
-            </div>
+              <span className="ml-2 text-xl font-bold text-white">Admin Panel</span>
+            </Link>
             <button 
               onClick={() => setIsSidebarOpen(false)} 
               className="lg:hidden text-gray-400 hover:text-white transition-colors"
