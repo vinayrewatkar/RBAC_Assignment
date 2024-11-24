@@ -1,4 +1,6 @@
-# NextJS Admin Dashboard Documentation
+# Admin Dashboard
+
+(https://github.com/vinayrewatkar/RBAC_Assignment/public/dashboard.png)
 
 ## Overview
 
