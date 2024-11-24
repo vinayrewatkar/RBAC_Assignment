@@ -1,36 +1,128 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# NextJS Admin Dashboard Documentation
 
-## Getting Started
+## Overview
 
-First, run the development server:
+This admin dashboard application provides a comprehensive interface for managing users, roles, and permissions. Built with Next.js 14+, the dashboard offers a secure and intuitive way for administrators to handle user management, role assignments, and permission controls.
+
+## Key Features
+
+1. **User Management**
+   - Complete CRUD operations for user accounts
+   - User status management (Active/Inactive)
+   - Role assignment interface
+   - Bulk user operations
+
+2. **Role Management**
+   - Role creation and modification
+   - Permission assignment to role.
+   - Custom attribute support
+
+3. **Permission System**
+   - Granular permission controls
+   - Dynamic permission assignment
+   - Permission inheritance
+   - Access level visualization
+
+## Prerequisites
+
+1. **Node.js**: Version 18.17 or later
+   - Download from [nodejs.org](https://nodejs.org/)
+   - Verify installation: `node --version`
+
+2. **Package Manager**: npm (included with Node.js) or yarn
+   - If using yarn, install it via: `npm install -g yarn`
+
+## Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+RBAC_Assignment/
+├── .next/
+├── node_modules/
+├── public/
+├── src/
+│   ├── app/
+│   │   └── (pages)/
+│   │       ├── dashboard/
+│   │       ├── roles/
+│   │       └── users/
+│   │   ├── components/
+│   │   ├── fonts/
+│   │   ├── store/
+│   │   ├── types/
+│   │   ├── utils/
+│   │   ├── globals.css
+│   │   ├── layout-client.tsx
+│   │   ├── layout.tsx
+│   │   └── page.tsx
+└── package.json
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/vinayrewatkar/RBAC_Assignment.git
+   cd RBAC_Assignment
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. **Install Dependencies**
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. **Run Development Server**
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+## Core Features Documentation
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### User Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The user management system provides the following capabilities:
 
-## Deploy on Vercel
+- **User Creation**: Add new users with basic information and role assignment
+- **User Editing**: Modify user details, status, and role associations
+- **User Deletion**: Remove users with proper authorization
+- **Status Management**: Toggle user status between Active and Inactive
+- **Role Assignment**: Assign multiple roles to users with visual feedback
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Role Management
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The role management interface allows:
+
+- **Role Definition**: Create and modify roles with custom attributes
+- **Permission Assignment**: Assign granular permissions to roles
+- **Role Analysis**: View role usage and permission overview
+
+### Permission System
+
+The permission system includes:
+
+- **Permission Types**: 
+  - Read: View access to resources
+  - Write: Create and modify resources
+  - Delete: Remove resources
+  - Custom: Define specialized permissions
+- **Access Control**: Fine-grained control over feature access
+
+## Development Guidelines
+
+1. **Code Style**
+   - Follow provided ESLint configuration
+   - Use TypeScript for type safety
+   - Implement proper error handling
+
+2. **Component Structure**
+   - Use atomic design principles
+   - Implement proper prop validation
+   - Follow React best practices
+
+3. **State Management**
+   - Utilize React Context for global state
+   - Implement proper loading states
+   - Handle errors gracefully
