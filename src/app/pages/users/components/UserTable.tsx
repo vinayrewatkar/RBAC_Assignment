@@ -26,7 +26,7 @@ const UserTable: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-950 rounded-lg shadow">
+    <div className="bg-black rounded-lg shadow">
       <div className="p-4 border-b border-gray-200 flex justify-between items-center">
         <h2 className="text-xl font-semibold text-white">Users</h2>
         <button
@@ -34,7 +34,7 @@ const UserTable: React.FC = () => {
             setSelectedUser(null);
             setShowModal(true);
           }}
-          className="flex items-center px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-blue-700"
+          className="flex items-center px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-500"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add User

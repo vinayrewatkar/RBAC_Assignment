@@ -43,13 +43,13 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-md">
+      <div className="bg-gray-900 rounded-lg p-6 w-full max-w-md">
         <h2 className="text-2xl font-bold mb-4">
           {initialRole ? "Edit Role" : "Add New Role"}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-white">
               Role Name
             </label>
             <input
@@ -58,13 +58,13 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({
               onChange={(e) =>
                 setFormData({ ...formData, name: e.target.value })
               }
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md bg-black text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-white">
               Description
             </label>
             <textarea
@@ -72,13 +72,13 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+              className="mt-1 block w-full rounded-md bg-black text-white shadow-sm focus:border-blue-500 focus:ring-blue-500"
               rows={3}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label className="block text-sm font-medium text-white mb-2">
               Permissions
             </label>
             <div className="space-y-2">
@@ -95,7 +95,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({
                     }}
                     className="rounded border-gray-300 text-blue-600 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                   />
-                  <span className="ml-2 text-sm text-gray-600">
+                  <span className="ml-2 text-sm text-gray-200">
                     {permission.name} - {permission.description}
                   </span>
                 </label>
@@ -107,7 +107,7 @@ export const RoleFormModal: React.FC<RoleFormModalProps> = ({
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-100 rounded-md hover:bg-gray-200"
+              className="px-4 py-2 text-sm font-medium text-black bg-gray-100 rounded-md hover:bg-gray-200"
             >
               Cancel
             </button>

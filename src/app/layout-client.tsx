@@ -86,7 +86,7 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
                 <div className="relative">
                   <button
                     onClick={() => setIsProfileMenuOpen(!isProfileMenuOpen)}
-                    className="flex items-center space-x-2 text-sm text-white hover:text-gray-900 focus:outline-none"
+                    className="flex items-center space-x-2 text-sm text-white hover:text-gray-500 focus:outline-none"
                   >
                     <div className="h-8 w-8 rounded-full bg-black flex items-center justify-center">
                       <Users className="h-5 w-5 text-white" />
@@ -96,11 +96,11 @@ export default function RootLayoutClient({ children }: { children: React.ReactNo
                   </button>
 
                   {isProfileMenuOpen && (
-                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                    <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-black ring-1 ring-black ring-opacity-5">
                       <div className="py-1">
                         <button
                           onClick={() => console.log("Logout clicked")}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                          className="flex items-center w-full px-4 py-2 text-sm text-gray-100 hover:bg-gray-800"
                         >
                           <LogOut className="h-4 w-4 mr-2" />
                           Sign out

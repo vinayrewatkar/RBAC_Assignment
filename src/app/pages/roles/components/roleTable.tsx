@@ -37,7 +37,7 @@ export const RoleTable: React.FC = () => {
         <h2 className="text-xl font-semibold text-white">Roles</h2>
         <button
           onClick={() => openModal()}
-          className="flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700"
+          className="flex items-center px-4 py-2 text-sm font-medium text-white bg-black rounded-md hover:bg-gray-500"
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Role
@@ -49,31 +49,31 @@ export const RoleTable: React.FC = () => {
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-gray-900">
             <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Role Name
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Description
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Permissions
               </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                 Created At
               </th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+              <th className="px-6 py-3 text-right text-xs font-medium text-white uppercase tracking-wider">
                 Actions
               </th>
             </tr>
           </thead>
-          <tbody className="bg-gray-900 divide-y divide-gray-200">
+          <tbody className="bg-gray-950 divide-y divide-gray-200">
             {roles.map((role) => (
               <tr key={role.id}>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{role.name}</div>
+                  <div className="text-sm font-medium text-gray-300">{role.name}</div>
                 </td>
                 <td className="px-6 py-4">
-                  <div className="text-sm text-gray-500">{role.description}</div>
+                  <div className="text-sm text-gray-300">{role.description}</div>
                 </td>
                 <td className="px-6 py-4">
                   <div className="flex flex-wrap gap-1">
@@ -88,7 +88,7 @@ export const RoleTable: React.FC = () => {
                   </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-500">
+                  <div className="text-sm text-gray-300">
                     {format(new Date(role.createdAt), "MM/dd/yyyy")} {/* Consistent date format */}
                   </div>
                 </td>
